@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Montserrat', sans-serif;
+    cursor: none;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded transition-colors duration-300;
+  }
+  .btn-primary {
+    @apply bg-black text-white hover:bg-white hover:text-black border border-black;
+  }
+  .btn-secondary {
+    @apply bg-white text-black hover:bg-black hover:text-white border border-black;
+  }
+}
+
+.custom-cursor {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.3s ease-out;
+  will-change: transform;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.custom-cursor::before {
+  content: 'LB';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+.custom-cursor.hovered {
+  width: 60px;
+  height: 60px;
+  background: #000;
+}
+
+.custom-cursor.hovered::before {
+  content: '♥';
+  color: #fff;
+  font-size: 24px;
+}
+
+.custom-cursor.clicked {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.custom-cursor.hidden {
+  opacity: 0;
+}
+
+.cursor-trail {
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.1s ease-out;
+  will-change: transform;
+  transform: translate(-50%, -50%);
+}
+
+*:hover {
+  cursor: none;
+}
+
+@keyframes slide-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes slide-right {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes paint-drop {
+  0% { clip-path: circle(0% at 50% 50%); }
+  100% { clip-path: circle(150% at 50% 50%); }
+}
+
+.animate-slide-left {
+  animation: slide-left 20s linear infinite;
+}
+
+.animate-slide-right {
+  animation: slide-right 20s linear infinite;
+}
+
+.animate-paint-drop {
+  animation: paint-drop 2s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out 0.5s forwards;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.loader-text {
+  font-size: 4rem;
+  font-weight: bold;
+  white-space: nowrap;
+  color: white;
+}
+
+.out-line {
+  -webkit-text-stroke: 1px white;
+  color: transparent;
+}
+
+.paint-drop {
+  background-color: white;
+}
